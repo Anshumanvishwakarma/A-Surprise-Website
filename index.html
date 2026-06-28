@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Hey Nidhi ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ══ GLOBAL ATMOSPHERE (behind all pages) ══ -->
+<div id="global-bg"></div>
+<div id="global-rain"></div>
+<div id="global-petals"></div>
+
+<!-- ══ GLOBAL OVERLAYS (always on top) ══ -->
+
+<div class="mouse-glow" id="mouseGlow"></div>
+
+<div id="hug-overlay">
+  <div class="hug-text">🤗 Sending you a warm hug 🤗</div>
+</div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div id="loaderPetals"></div>
+  <div class="ldr-icon">🌸</div>
+  <p class="ldr-txt">Making something special for you, Nidhi...</p>
+  <div class="ldr-bar-wrap"><div class="ldr-bar"></div></div>
+</div>
+
+<!-- HUD -->
+<div id="hud">
+  <div id="star-counter">⭐ 0 / 5</div>
+  <button class="hud-btn" id="music-btn" title="Music">🎵</button>
+  <button class="hud-btn" id="theme-btn" title="Theme">🌙</button>
+</div>
+
+<!-- GOLDEN KEY OVERLAY -->
+<div id="golden-overlay">
+  <canvas id="gold-canvas"></canvas>
+  <p class="gold-text">✨ You found something meant only for you… ✨</p>
+  <svg class="gold-key" width="140" height="70" viewBox="0 0 140 70" onclick="unlockEnvelope()" role="button" aria-label="Click to unlock the envelope">
+    <defs><radialGradient id="kg"><stop offset="0%" stop-color="#ffe066"/><stop offset="100%" stop-color="#b8860b"/></radialGradient></defs>
+    <filter id="gk"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <circle cx="32" cy="35" r="20" fill="none" stroke="url(#kg)" stroke-width="7" filter="url(#gk)"/>
+    <circle cx="32" cy="35" r="10" fill="url(#kg)" filter="url(#gk)"/>
+    <rect x="50" y="31" width="76" height="8" rx="4" fill="url(#kg)" filter="url(#gk)"/>
+    <rect x="104" y="39" width="7" height="12" rx="2.5" fill="url(#kg)"/>
+    <rect x="116" y="39" width="7" height="17" rx="2.5" fill="url(#kg)"/>
+    <rect x="128" y="39" width="7" height="10" rx="2.5" fill="url(#kg)"/>
+  </svg>
+  <p style="color:rgba(255,215,0,.5);font-size:.85rem;margin-top:18px;font-style:italic;font-family:'Dancing Script',cursive">Click the key to unlock…</p>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 1 ─ HERO / LANDING
+══════════════════════════════════════ -->
+<div class="pg active" id="pg-hero">
+  <canvas id="hero-canvas"></canvas>
+  <span class="hstar" id="star-1" onclick="collectStar(1)">⭐</span>
+
+  <div class="hero-wrap">
+    <div class="hero-left">
+      <h1 class="hero-hey">Hey…<span class="hero-heart">❤️</span></h1>
+      <p class="hero-intro">Before you continue,<br>I made this little place for<br>someone very special.<br><br>And if you're reading this…</p>
+      <p class="hero-tag">It's for you, Nidhi. ❤️</p>
+      <button class="enter-btn" onclick="enterSite()">Enter <span class="arr">→</span></button>
+      <div class="hero-chips">
+        <span class="chip chip-lav" onclick="enterSite()">💙 Feeling Sad?</span>
+        <span class="chip chip-pink" onclick="enterSite()">🤍 Need Support?</span>
+        <span class="chip chip-gold" onclick="enterSite()">⭐ Doubting Yourself?</span>
+        <span class="chip chip-rose" onclick="enterSite()">😊 Want to Smile?</span>
+      </div>
+    </div>
+    <div class="hero-right" aria-hidden="true">
+      <div class="hero-img-frame float-anim">
+        <img src="img_hero.png" alt="Magical night scene" class="hero-art"/>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 2 ─ CHOOSE HUB
+══════════════════════════════════════ -->
+<div class="pg" id="pg-choose">
+  <div class="ph ph-choose">
+    <button class="back-btn" onclick="goTo('hero')">← Back to Start</button>
+    <span class="badge badge-lav">🏠 Nidhi's Place</span>
+  </div>
+  <div class="pg-scroll">
+    <div class="choose-hero">
+      <h1 class="ch-title">Choose Where You Want to Go</h1>
+      <p class="ch-sub">Every corner of this place was made with you in mind, Nidhi. ❤️</p>
+    </div>
+
+    <div class="section-label">How are you feeling today?</div>
+    <div class="cards-grid g4">
+
+      <button class="card card-lav" onclick="goTo('sad')">
+        <div class="card-img-wrap">
+          <img src="img_sad.png" alt="Rainy night" class="card-art"/>
+        </div>
+        <div class="card-body">
+          <div class="card-icon">💙</div>
+          <h3 class="card-title">When You're Sad</h3>
+          <p class="card-desc">For those days when everything feels heavy. A quiet space just to breathe.</p>
+          <span class="card-cta">Open this space <span class="arr">→</span></span>
+        </div>
+      </button>
+
+      <button class="card card-pink" onclick="goTo('support')">
+        <div class="card-img-wrap">
+          <img src="img_support.png" alt="Warm lantern" class="card-art"/>
+        </div>
+        <div class="card-body">
+          <div class="card-icon">🤍</div>
+          <h3 class="card-title">When You Need Support</h3>
+          <p class="card-desc">Someone is always here for you. You don't have to carry it alone.</p>
+          <span class="card-cta">Come in <span class="arr">→</span></span>
+        </div>
+      </button>
+
+      <button class="card card-gold" onclick="goTo('doubt')">
+        <div class="card-img-wrap">
+          <img src="img_doubt.png" alt="Constellation stars" class="card-art"/>
+        </div>
+        <div class="card-body">
+          <div class="card-icon">⭐</div>
+          <h3 class="card-title">When You Doubt Yourself</h3>
+          <p class="card-desc">A gentle reminder of everything wonderful that you already are.</p>
+          <span class="card-cta">See your strengths <span class="arr">→</span></span>
+        </div>
+      </button>
+
+      <button class="card card-rose" onclick="goTo('smile')">
+        <div class="card-img-wrap">
+          <img src="img_smile.png" alt="Happy sunshine" class="card-art"/>
+        </div>
+        <div class="card-body">
+          <div class="card-icon">😊</div>
+          <h3 class="card-title">When You Want To Smile</h3>
+          <p class="card-desc">Cute animals & wholesome moments — your personal joy corner.</p>
+          <span class="card-cta">Make me smile <span class="arr">→</span></span>
+        </div>
+      </button>
+
+    </div>
+
+    <div class="divider"><span>✦ Also waiting for you ✦</span></div>
+
+    <div class="section-label">Explore more</div>
+    <div class="cards-grid g3">
+
+      <button class="card card-gold" onclick="goTo('stars')">
+        <div class="card-body" style="padding-top:28px">
+          <div class="card-icon">⭐</div>
+          <h3 class="card-title">Hidden Star Game</h3>
+          <p class="card-desc">Find 5 stars hidden across different pages. Collect them all to unlock something special!</p>
+          <div class="mini-star-count" id="choose-star-count">⭐ 0 / 5 found</div>
+          <span class="card-cta">Play <span class="arr">→</span></span>
+        </div>
+      </button>
+
+      <button class="card card-rose" onclick="goTo('envelope')">
+        <div class="card-body" style="padding-top:28px">
+          <div class="card-icon">💌</div>
+          <h3 class="card-title">Digital Envelope</h3>
+          <p class="card-desc">A very special letter is waiting for you. Collect all 5 stars to unlock it.</p>
+          <div class="env-mini-status" id="choose-env-status">🔒 Locked — collect all ⭐</div>
+          <span class="card-cta">Go there <span class="arr">→</span></span>
+        </div>
+      </button>
+
+      <button class="card card-lav" onclick="goTo('ending')">
+        <div class="card-body" style="padding-top:28px">
+          <div class="card-icon">🌙</div>
+          <h3 class="card-title">The Ending</h3>
+          <p class="card-desc">One last beautiful thought — a soft goodbye from this little place.</p>
+          <span class="card-cta">Visit <span class="arr">→</span></span>
+        </div>
+      </button>
+
+    </div>
+    <p class="choose-note">✨ Tip: Stars are hidden on each emotion page. Hover carefully!</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 3 ─ WHEN YOU'RE SAD
+══════════════════════════════════════ -->
+<div class="pg" id="pg-sad">
+  <div class="rain-layer" id="rain-sad"></div>
+  <span class="hstar hstar-fixed" id="star-2" onclick="collectStar(2)" style="top:22%;right:9%">⭐</span>
+  <div class="ph ph-sad">
+    <button class="back-btn" onclick="goTo('choose')">← Back</button>
+    <span class="badge badge-lav">💙 When You're Sad</span>
+  </div>
+  <div class="pg-scroll">
+    <div class="emotion-wrap">
+      <div class="emotion-img float-anim">
+        <img src="img_sad.png" alt="Rainy night scene" class="emotion-art frame-lav"/>
+      </div>
+      <div class="emotion-card">
+        <h2 class="ec-title" style="color:#c4a8ff">💙 When You're Sad</h2>
+        <div class="ec-body">
+          <p>Hey,</p>
+          <p>I know some days feel heavier than others. Sometimes thoughts get loud and even smiling feels like too much.</p>
+          <p>And that's okay. You don't have to pretend you're fine all the time. If today isn't your day, please don't be hard on yourself.</p>
+          <p>Take your time.<br>Cry if you need to.<br>Rest if you need to.<br>Breathe if you need to.</p>
+          <p>Storms never stay forever, and neither will this feeling.</p>
+          <p>I genuinely believe brighter days are waiting for you. Until then... just remember there's someone who quietly hopes you smile again.</p>
+          <p>You've made it through every difficult day before. You'll make it through this one too. 💙</p>
+        </div>
+        <button class="pg-btn btn-lav" id="breath-btn" onclick="deepBreath(this)">Take A Deep Breath ❤️</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 4 ─ WHEN YOU NEED SUPPORT
+══════════════════════════════════════ -->
+<div class="pg" id="pg-support">
+  <span class="hstar hstar-fixed" id="star-3" onclick="collectStar(3)" style="top:28%;right:12%">⭐</span>
+  <div class="ph ph-support">
+    <button class="back-btn" onclick="goTo('choose')">← Back</button>
+    <span class="badge badge-pink">🤍 When You Need Support</span>
+  </div>
+  <div class="pg-scroll">
+    <div class="emotion-wrap">
+      <div class="emotion-img float-anim">
+        <img src="img_support.png" alt="Warm glowing lantern" class="emotion-art frame-gold"/>
+      </div>
+      <div class="emotion-card">
+        <h2 class="ec-title" style="color:#ffb3c6">🤍 When You Need Support</h2>
+        <div class="ec-body">
+          <p>Hey,</p>
+          <p>You don't have to carry everything alone.</p>
+          <p>I know sometimes life feels overwhelming, and it feels like nobody really understands what's going on inside your head.</p>
+          <p>But I just want you to know something: you don't always have to be the strong one.</p>
+          <p>If one day you feel tired, confused, happy, excited, or simply want someone to listen — I'm here.</p>
+          <p>You can talk about anything. Your random thoughts. Your bad days. Your good days. The smallest moments. Or even nothing at all.</p>
+          <p>Sometimes having someone quietly listen is enough. So never think you're bothering me.</p>
+          <p>You're not. 🤍</p>
+        </div>
+        <button class="pg-btn btn-pink" onclick="sendHug()">Send Me a Hug ❤️</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 5 ─ WHEN YOU DOUBT YOURSELF
+══════════════════════════════════════ -->
+<div class="pg" id="pg-doubt">
+  <span class="hstar hstar-fixed" id="star-4" onclick="collectStar(4)" style="top:55%;left:8%">⭐</span>
+  <div class="ph ph-doubt">
+    <button class="back-btn" onclick="goTo('choose')">← Back</button>
+    <span class="badge badge-gold">⭐ When You Doubt Yourself</span>
+  </div>
+  <div class="pg-scroll">
+    <div class="emotion-wrap">
+      <div class="emotion-img float-anim">
+        <img src="img_doubt.png" alt="Glowing constellation" class="emotion-art frame-gold"/>
+      </div>
+      <div class="emotion-card">
+        <h2 class="ec-title" style="color:#ffd700">⭐ When You Doubt Yourself</h2>
+        <div class="ec-body">
+          <p>Hey,</p>
+          <p>I know there are days when you question yourself. Days when you compare yourself to others. Days when you feel like you're not doing enough.</p>
+          <p>But please don't believe every negative thought your mind tells you.</p>
+          <p style="color:rgba(255,215,0,.95);font-weight:700;font-size:1rem">You're far more capable than you realize.</p>
+          <p>You're kind. You're funny. You care about people. And those things matter more than perfection ever will.</p>
+          <p>Please don't let one bad day convince you that you're not enough. Because from where I stand... you're already amazing. ✨</p>
+          <p style="color:rgba(255,255,255,.4);font-style:italic;font-size:.85rem">Click a word below to hear something true about you:</p>
+        </div>
+        <div class="aff-grid">
+          <button class="aff-btn" onclick="showAff('Kind',this)">Kind</button>
+          <button class="aff-btn" onclick="showAff('Strong',this)">Strong</button>
+          <button class="aff-btn" onclick="showAff('Funny',this)">Funny</button>
+          <button class="aff-btn" onclick="showAff('Thoughtful',this)">Thoughtful</button>
+          <button class="aff-btn" onclick="showAff('Supportive',this)">Supportive</button>
+          <button class="aff-btn" onclick="showAff('Beautiful Soul',this)">Beautiful Soul</button>
+        </div>
+        <div class="aff-msg" id="aff-msg"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 6 ─ WHEN YOU WANT TO SMILE
+══════════════════════════════════════ -->
+<div class="pg" id="pg-smile">
+  <span class="hstar hstar-fixed" id="star-5" onclick="collectStar(5)" style="top:18%;right:6%">⭐</span>
+  <div class="ph ph-smile">
+    <button class="back-btn" onclick="goTo('choose')">← Back</button>
+    <span class="badge badge-rose">😊 Smile Zone</span>
+  </div>
+  <div class="pg-scroll">
+    <div class="smile-header">
+      <div class="smile-art float-anim">
+        <img src="img_smile.png" alt="Happy sunshine" class="smile-art-img"/>
+      </div>
+      <div>
+        <h2 class="smile-title">🐱 Smile Zone</h2>
+        <p class="smile-sub">Your daily dose of wholesome happiness — fresh cute animals every time!</p>
+      </div>
+    </div>
+    <div class="meme-card-outer">
+      <div class="meme-top-row">
+        <span class="meme-label">Mood: Make Me Smile 😊</span>
+        <button class="fetch-btn" onclick="loadNewMemes()">Get New Smile 🐱</button>
+      </div>
+      <div class="meme-grid" id="meme-grid"></div>
+      <p class="meme-note">Automatically fetching new wholesome content for you! ❤️</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 7 ─ HIDDEN STAR GAME
+══════════════════════════════════════ -->
+<div class="pg" id="pg-stars">
+  <div class="ph ph-stars">
+    <button class="back-btn" onclick="goTo('choose')">← Back</button>
+    <span class="badge badge-gold">⭐ Hidden Star Game</span>
+  </div>
+  <div class="pg-scroll">
+    <div class="stars-page-card">
+      <h2 class="sp-title">⭐ Hidden Star Game</h2>
+      <p class="sp-desc">5 stars are hidden across different pages of this website. Hover carefully to find them. Collect all 5 and something very special will unlock!</p>
+      <div class="jar-area">
+        <svg width="160" height="215" viewBox="0 0 140 190" id="star-jar">
+          <path d="M28,65 L16,178 Q16,184 22,184 L118,184 Q124,184 124,178 L112,65 Z" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.18)" stroke-width="2"/>
+          <rect x="26" y="50" width="88" height="18" rx="6" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.22)" stroke-width="1.5"/>
+          <rect x="32" y="43" width="76" height="11" rx="5" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+          <text x="52" y="170" font-size="20" id="js1" opacity=".08">⭐</text>
+          <text x="74" y="150" font-size="15" id="js2" opacity=".08">⭐</text>
+          <text x="36" y="148" font-size="13" id="js3" opacity=".08">⭐</text>
+          <text x="92" y="162" font-size="17" id="js4" opacity=".08">⭐</text>
+          <text x="60" y="128" font-size="12" id="js5" opacity=".08">⭐</text>
+          <ellipse cx="70" cy="150" rx="32" ry="22" fill="rgba(255,215,0,.03)" id="jar-glow"/>
+        </svg>
+        <p class="jar-count" id="jar-count">⭐ 0 / 5 Stars Found</p>
+      </div>
+      <div class="tracker">
+        <p class="tracker-title">Where to find the stars:</p>
+        <div class="track-row" id="tr1"><span class="tdot" id="dot-1">○</span><span class="tpage">🏠 Landing Page</span><span class="tstatus" id="st-1">Not found yet</span></div>
+        <div class="track-row" id="tr2"><span class="tdot" id="dot-2">○</span><span class="tpage">💙 When You're Sad</span><span class="tstatus" id="st-2">Not found yet</span></div>
+        <div class="track-row" id="tr3"><span class="tdot" id="dot-3">○</span><span class="tpage">🤍 When You Need Support</span><span class="tstatus" id="st-3">Not found yet</span></div>
+        <div class="track-row" id="tr4"><span class="tdot" id="dot-4">○</span><span class="tpage">⭐ When You Doubt Yourself</span><span class="tstatus" id="st-4">Not found yet</span></div>
+        <div class="track-row" id="tr5"><span class="tdot" id="dot-5">○</span><span class="tpage">😊 When You Want To Smile</span><span class="tstatus" id="st-5">Not found yet</span></div>
+      </div>
+      <button class="hint-btn" onclick="giveHint()">✨ Give Me a Hint!</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 8 ─ DIGITAL ENVELOPE
+══════════════════════════════════════ -->
+<div class="pg" id="pg-envelope">
+  <div class="ph ph-envelope">
+    <button class="back-btn" onclick="goTo('choose')">← Back</button>
+    <span class="badge badge-rose">💌 Digital Envelope</span>
+  </div>
+  <div class="pg-scroll">
+    <div class="env-page-card">
+      <h2 class="ep-title">💌 Digital Envelope</h2>
+      <p class="ep-desc" id="ep-desc">Collect all 5 stars to unlock a very special letter written just for you, Nidhi.</p>
+      <div class="ep-img-wrap" id="ep-img-wrap" onclick="openEnvelope()">
+        <img id="env-img" src="img_letter.png" alt="Sealed envelope" class="ep-img"/>
+      </div>
+      <div id="ep-lock-area">
+        <p class="ep-lock-txt" id="ep-lock-txt">🔒 Collect <strong id="ep-need">5</strong> more star(s) to unlock</p>
+        <div class="ep-prog-wrap"><div class="ep-prog-bar" id="ep-prog"></div></div>
+      </div>
+      <div id="ep-unlock-area" style="display:none;flex-direction:column;align-items:center;gap:14px;width:100%">
+        <p class="ep-unlocked">✨ All stars found! The envelope is yours!</p>
+        <button class="ep-open-btn" onclick="openEnvelope()">Open Letter 💌</button>
+      </div>
+      <button class="ep-stars-btn" onclick="goTo('stars')">⭐ Go collect stars →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 9 ─ ONE LAST LETTER
+══════════════════════════════════════ -->
+<div class="pg" id="pg-letter">
+  <div class="ph ph-letter">
+    <button class="back-btn" onclick="goTo('choose')">← Back</button>
+    <span class="badge badge-rose">💌 One Last Letter</span>
+  </div>
+  <div class="pg-scroll">
+    <div class="letter-card">
+      <div class="lc-card-inner">
+        <h2 class="lc-title">One Last Letter 💌</h2>
+        <div id="letter-locked" class="lc-locked">
+          <div style="font-size:3rem">🔒</div>
+          <p>This letter is locked. Collect all 5 stars and open the envelope first.</p>
+          <button class="lc-env-btn" onclick="goTo('envelope')">Go to Envelope →</button>
+        </div>
+        <div id="letter-text" class="lc-text" style="display:none"></div>
+        <div id="letter-end" class="lc-end" style="display:none">
+          <div style="font-size:2.5rem">🤍</div>
+          <p>Some people become important without even realizing it.</p>
+          <button class="lc-ending-btn" onclick="goTo('ending')">Read the Ending →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 10 ─ THE ENDING
+══════════════════════════════════════ -->
+<div class="pg" id="pg-ending">
+  <canvas id="ending-canvas"></canvas>
+  <div class="ph ph-ending">
+    <button class="back-btn" onclick="goTo('choose')">← Back</button>
+    <span class="badge badge-lav">🌙 The Ending</span>
+  </div>
+  <div class="pg-scroll">
+    <div class="ending-card">
+      <div class="ending-img-wrap float-anim">
+        <img src="img_hero.png" alt="Magical night sky" class="ending-art"/>
+      </div>
+      <h2 class="ending-quote">"If this website made you smile...<br>then it already did what it was made for."</h2>
+      <p class="ending-made">Made with more care than words can explain.</p>
+      <p class="ending-body">This little place will always be here — whenever you need a smile, a hug, or just a reminder that you matter.<br><br>Come back anytime. ❤️ ✨</p>
+      <div class="ending-btns">
+        <button class="eb eb-ghost" onclick="goTo('hero')">← Back to the Beginning</button>
+        <button class="eb eb-glow"  onclick="goTo('choose')">Explore Again →</button>
+      </div>
+      <div class="ending-footer">
+        <div class="ef-item" onclick="toggleMusic()"><span>🎵</span><span id="music-status">Music</span></div>
+        <div class="ef-item" onclick="toggleTheme()"><span>🌙</span><span>Theme</span></div>
+        <div class="ef-item"><span>❤️</span><span>Made with Love</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
